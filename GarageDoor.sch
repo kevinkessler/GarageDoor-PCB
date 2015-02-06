@@ -7891,12 +7891,20 @@ Source: DCJ0202.pdf</description>
 <part name="P+5" library="supply1" deviceset="V+" device=""/>
 <part name="P+6" library="supply1" deviceset="V+" device=""/>
 <part name="SUPPLY8" library="supply2" deviceset="GND" device=""/>
+<part name="R12" library="resistor" deviceset="R-US_" device="R0805" value="1K"/>
+<part name="R13" library="resistor" deviceset="R-US_" device="R0805" value="1K"/>
+<part name="R15" library="resistor" deviceset="R-US_" device="R0805" value="10K"/>
+<part name="R14" library="resistor" deviceset="R-US_" device="R0805" value="10K"/>
+<part name="P+7" library="supply1" deviceset="+5V" device=""/>
+<part name="P+8" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="233.68" y="27.94" size="1.778" layer="91">Hall Effect Switches Header</text>
 <text x="228.6" y="152.4" size="1.778" layer="91">RGB Led Subsystem</text>
+<text x="233.68" y="20.32" size="1.778" layer="91">D3 Is the Closed Detector
+D4 is the Opened Detector</text>
 </plain>
 <instances>
 <instance part="Q1" gate="G$1" x="35.56" y="2.54"/>
@@ -7935,6 +7943,12 @@ Source: DCJ0202.pdf</description>
 <instance part="P+5" gate="1" x="-116.84" y="76.2"/>
 <instance part="P+6" gate="1" x="-127" y="55.88"/>
 <instance part="SUPPLY8" gate="GND" x="-129.54" y="78.74"/>
+<instance part="R12" gate="G$1" x="193.04" y="35.56"/>
+<instance part="R13" gate="G$1" x="193.04" y="5.08"/>
+<instance part="R15" gate="G$1" x="203.2" y="12.7" rot="R90"/>
+<instance part="R14" gate="G$1" x="205.74" y="43.18" rot="R90"/>
+<instance part="P+7" gate="1" x="205.74" y="53.34"/>
+<instance part="P+8" gate="1" x="203.2" y="22.86"/>
 </instances>
 <busses>
 </busses>
@@ -8130,6 +8144,16 @@ Source: DCJ0202.pdf</description>
 <junction x="-96.52" y="50.8"/>
 <wire x1="-96.52" y1="50.8" x2="-88.9" y2="50.8" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="R14" gate="G$1" pin="2"/>
+<pinref part="P+7" gate="1" pin="+5V"/>
+<wire x1="205.74" y1="48.26" x2="205.74" y2="50.8" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R15" gate="G$1" pin="2"/>
+<pinref part="P+8" gate="1" pin="+5V"/>
+<wire x1="203.2" y1="17.78" x2="203.2" y2="20.32" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="A4" class="0">
 <segment>
@@ -8172,20 +8196,12 @@ Source: DCJ0202.pdf</description>
 <wire x1="-88.9" y1="86.36" x2="-78.74" y2="86.36" width="0.1524" layer="91"/>
 <label x="-83.82" y="86.36" size="1.778" layer="95"/>
 </segment>
-<segment>
-<wire x1="223.52" y1="30.48" x2="213.36" y2="30.48" width="0.1524" layer="91"/>
-<label x="215.9" y="30.48" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="D1" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="D1"/>
 <wire x1="-86.36" y1="91.44" x2="-78.74" y2="91.44" width="0.1524" layer="91"/>
 <label x="-83.82" y="91.44" size="1.778" layer="95"/>
-</segment>
-<segment>
-<wire x1="223.52" y1="27.94" x2="213.36" y2="27.94" width="0.1524" layer="91"/>
-<label x="215.9" y="27.94" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="V+" class="0">
@@ -8206,9 +8222,64 @@ Source: DCJ0202.pdf</description>
 <wire x1="-116.84" y1="71.12" x2="-116.84" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="D3" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="D3"/>
+<wire x1="-86.36" y1="101.6" x2="-78.74" y2="101.6" width="0.1524" layer="91"/>
+<label x="-83.82" y="101.6" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="187.96" y1="35.56" x2="182.88" y2="35.56" width="0.1524" layer="91"/>
+<label x="182.88" y="35.56" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="D4" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="D4"/>
+<wire x1="-86.36" y1="106.68" x2="-78.74" y2="106.68" width="0.1524" layer="91"/>
+<label x="-83.82" y="106.68" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R13" gate="G$1" pin="1"/>
+<wire x1="187.96" y1="5.08" x2="182.88" y2="5.08" width="0.1524" layer="91"/>
+<label x="182.88" y="5.08" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$13" class="0">
+<segment>
+<pinref part="HALL_CONN" gate="1" pin="2"/>
+<wire x1="220.98" y1="30.48" x2="205.74" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="30.48" x2="205.74" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="R12" gate="G$1" pin="2"/>
+<wire x1="205.74" y1="35.56" x2="198.12" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="R14" gate="G$1" pin="1"/>
+<wire x1="205.74" y1="35.56" x2="205.74" y2="38.1" width="0.1524" layer="91"/>
+<junction x="205.74" y="35.56"/>
+</segment>
+</net>
+<net name="N$15" class="0">
+<segment>
+<pinref part="HALL_CONN" gate="1" pin="3"/>
+<wire x1="220.98" y1="27.94" x2="208.28" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="27.94" x2="208.28" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="R13" gate="G$1" pin="2"/>
+<wire x1="208.28" y1="5.08" x2="203.2" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="R15" gate="G$1" pin="1"/>
+<wire x1="203.2" y1="5.08" x2="198.12" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="203.2" y1="5.08" x2="203.2" y2="7.62" width="0.1524" layer="91"/>
+<junction x="203.2" y="5.08"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
